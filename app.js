@@ -1,5 +1,19 @@
 let humanScore = 0;
 let computerScore = 0;
+let newHumanChoice;
+let humanScoreBoard = document.getElementById("humanScore");
+let computerScoreBoard = document.getElementById("computerScore");
+
+const playButtons = document.querySelectorAll("button");
+const displayMessage = document.getElementById("response");
+const humanTime = document.getElementById("doYourPlay");
+
+playButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    newHumanChoice = button.id;
+    return playRound(newHumanChoice, getComputerChoice());
+  });
+});
 
 function getComputerChoice() {
   const computerChoice = ["rock", "paper", "scissors"];
@@ -9,48 +23,40 @@ function getComputerChoice() {
   return computerChoice[randomIndex].toLowerCase();
 }
 
-function getHumanChoice() {
-  const humanPlay = prompt("Do your move!", "rock", "paper", "scissors");
-  return humanPlay.toLowerCase();
-}
-
 function playRound(humanChoice, computerChoice) {
   if (humanChoice == computerChoice) {
-    console.log("Empate");
+    displayMessage.textContent = "Empate";
   }
   if (humanChoice == "rock" && computerChoice == "scissors") {
-    console.log(
-      `Computador: ${computerChoice} perdeu para | Humano: ${humanChoice}`
-    );
+    displayMessage.textContent = `Computador: ${computerChoice} perdeu para || Humano: ${humanChoice}`;
   }
   if (humanChoice == "paper" && computerChoice == "rock") {
-    console.log(
-      `Computador: ${computerChoice} perdeu para | Humano: ${humanChoice}`
-    );
+    displayMessage.textContent = `Computador: ${computerChoice} perdeu para || Humano: ${humanChoice}`;
+    humanScore++;
   }
   if (humanChoice == "scissors" && computerChoice == "paper") {
-    console.log(
-      `Computador: ${computerChoice} perdeu para | Humano: ${humanChoice}`
-    );
+    displayMessage.textContent = `Computador: ${computerChoice} perdeu para || Humano: ${humanChoice}`;
+    humanScore++;
   }
   if (computerChoice == "rock" && humanChoice == "scissors") {
-    console.log(
-      `Humano: ${humanChoice} perdeu para | Computador: ${computerChoice}`
-    );
+    displayMessage.textContent = `Humano: ${humanChoice} perdeu para || Computador: ${computerChoice}`;
+    computerScore++;
   }
   if (computerChoice == "paper" && humanChoice == "rock") {
-    console.log(
-      `Humano: ${humanChoice} perdeu para | Computador: ${computerChoice}`
-    );
+    displayMessage.textContent = `Humano: ${humanChoice} perdeu para || Computador: ${computerChoice}`;
+    computerScore++;
   }
   if (computerChoice == "scissors" && humanChoice == "paper") {
-    console.log(
-      `Humano: ${humanChoice} perdeu para | Computador: ${computerChoice}`
-    );
+    displayMessage.textContent = `Humano: ${humanChoice} perdeu para || Computador: ${computerChoice}`;
+    computerScore++;
   }
+  if (humanScore == 3 || computerScore == 3) {
+    if (humanScore == 3) {
+      displayMessage.textContent = `O Ganhador foi o Humano`;
+    } else if (computerScore == 3) {
+      displayMessage.textContent = `O Ganhador foi o Computador`;
+    }
+  }
+  humanScoreBoard.textContent = `Humano: ${humanScore}`;
+  computerScoreBoard.textContent = `Computador: ${computerScore}`;
 }
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);

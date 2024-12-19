@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="app.js" defer></script>
-</head>
-<body>
-    
-</body>
+  </head>
+  <style>
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 25px;
+    }
+  </style>
+  <body>
+    <div class="content">
+      <span id="humanScore"></span>
+      <span id="computerScore"></span>
+      <span id="response"></span>
+      <button id="rock">rock</button>
+      <button id="paper">paper</button>
+      <button id="scissors">scissors</button>
+    </div>
+  </body>
 </html>
